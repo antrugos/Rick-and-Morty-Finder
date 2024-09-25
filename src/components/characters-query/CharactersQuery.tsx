@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
-import HeartIcon from '../../assets/Heart-grey.svg';
+import HeartGrey from '../../assets/Heart-grey.svg';
+import HeartGreen from '../../assets/Heart-green.svg';
 import { Link } from "react-router-dom";
 import './charactersQuery.css';
-import Favorite from "../favorite/Favorite";
 
 type Character = {
     id: string,
@@ -11,6 +11,7 @@ type Character = {
     status: string,
     species: string,
     gender: string,
+    isFavorite: boolean,
 }
 
 type CharactersData = {
@@ -29,6 +30,7 @@ const GET_CHARACTERS = gql`
         status
         species
         gender
+        isFavorite @client
       }
     }
   }
@@ -55,7 +57,7 @@ const CharactersQuery = ({ sortOrder }: Props) => {
 
     return (
         <ul className="content">
-            {sortedCharacters.map(({ id, name, image, species }) => (
+            {sortedCharacters.map(({ id, name, image, species, isFavorite }) => (
                 <li key={id} className="card">
                     <Link to={`/character/${id}`}>
                         <div className="cardImg">
@@ -65,7 +67,7 @@ const CharactersQuery = ({ sortOrder }: Props) => {
                                 <p className='cardInfo'>{species}</p>
                             </div>
                             <div className="heartIcon">
-                                <Favorite />
+                                <img src={isFavorite ? HeartGreen : HeartGrey} alt="heart-icon" />
                             </div>
                         </div>
                     </Link>

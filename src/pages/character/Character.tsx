@@ -2,7 +2,6 @@ import { gql, useQuery } from "@apollo/client";
 import Favorite from "../../components/favorite/Favorite";
 import { useParams } from "react-router-dom";
 import './character.css';
-import { favoritesVar } from "../../cache/ApolloClient";
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
@@ -26,15 +25,14 @@ const Character = () => {
     if (loading) return <p></p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const { name, image, status, species } = data.character;
-    const isFavorite = favoritesVar().includes(id);
+    const { name, image, status, species, isFavorite } = data.character;
 
     return (
         <main id="character">
             <div className="contentCharacter">
                 <div className="characterImg">
                     <img className="img" src={image} alt={name} />
-                    <Favorite characterId={id} isFavorite={isFavorite} />
+                    <Favorite characterId={id || ''} isFavorite={isFavorite} />
                 </div>
                 <h1 className="characterTitle">{name}</h1>
             </div>

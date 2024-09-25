@@ -1,6 +1,6 @@
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { ApolloClient, ApolloProvider, gql } from '@apollo/client';
 import { createRoot } from 'react-dom/client';
-import { cache, resolvers, typeDefs } from './cache/apolloClient.tsx'
+import { cache } from './cache/ApolloClient.tsx'
 import { RouterProvider } from 'react-router-dom';
 import router from './routes/root.tsx';
 import './index.css';
@@ -8,8 +8,6 @@ import './index.css';
 const client = new ApolloClient({
   uri: 'https://rickandmortyapi.com/graphql',
   cache,
-  typeDefs,
-  resolvers,
 });
 
 client
