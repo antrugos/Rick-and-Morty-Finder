@@ -34,15 +34,28 @@ const GET_CHARACTERS = gql`
   }
 `;
 
-const CharactersQuery = () => {
+type Props = {
+    sortOrder: 'asc' | 'desc';
+}
+
+const CharactersQuery = ({ sortOrder }: Props) => {
     const { loading, error, data } = useQuery<CharactersData>(GET_CHARACTERS);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <p></p>;
     if (error) return <p>Error : {error.message}</p>;
+
+    const characters = data?.characters?.results || [];
+
+    const sortedCharacters = [...characters].sort((a, b) => {
+        if (sortOrder === 'asc') {
+            return a.name.localeCompare(b.name);
+        }
+        return b.name.localeCompare(a.name);
+    });
 
     return (
         <ul className="content">
-            {data?.characters.results.map(({ id, name, image, species }) => (
+            {sortedCharacters.map(({ id, name, image, species }) => (
                 <li key={id} className="card">
                     <Link to={`/character/${id}`}>
                         <div className="cardImg">
@@ -52,7 +65,7 @@ const CharactersQuery = () => {
                                 <p className='cardInfo'>{species}</p>
                             </div>
                             <div className="heartIcon">
-                                <img src={HeartIcon} alt="heart-icon" />
+                                <Favorite />
                             </div>
                         </div>
                     </Link>

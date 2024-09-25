@@ -8,12 +8,15 @@ import './App.css';
 
 function App() {
   const [isActive, setIsActive] = useState(false);
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
   const openFilter = () => {
     setIsActive(!isActive);
   }
 
-
+  const handleSort = () => {
+    setSortOrder(prevOrder => prevOrder === 'asc' ? 'desc' : 'asc')
+  }
 
   return (
     <main className='main'>
@@ -45,6 +48,9 @@ function App() {
               <img src={FilterImg} alt="filter-img" />
             </button>
           </Form>
+          <button className='sortButton' onClick={handleSort}>
+            {sortOrder === 'asc' ? '🔼' : '🔽'}
+          </button>
         </div>
         {isActive && (
           <div className='modal'>
@@ -52,7 +58,7 @@ function App() {
           </div>
         )}
         <nav className='navCharacters'>
-          <CharactersQuery />
+          <CharactersQuery sortOrder={sortOrder} />
         </nav>
       </div>
       <div id="detail">

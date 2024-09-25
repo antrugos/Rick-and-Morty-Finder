@@ -23,8 +23,8 @@ const Character = () => {
         variables: { id }
     });
 
+    if (loading) return <p></p>;
     if (error) return <p>Error: {error.message}</p>;
-    if (loading) return <p>Loading ...</p>;
 
     const { name, image, status, species } = data.character;
     const isFavorite = favoritesVar().includes(id);

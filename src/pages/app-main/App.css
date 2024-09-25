@@ -30,6 +30,10 @@
   @apply bg-primary-100;
 }
 
+.sortButton {
+  @apply my-2 p-1 bg-gray-200 text-gray-800 rounded-full cursor-pointer border hover:bg-primary-100 hover:border-primary-600;
+}
+
 .modal {
   @apply md:flex md:ml-3 md:z-10 ;
 }

@@ -20,7 +20,7 @@ const FavoritesList = () => {
     skip: favoriteIds.length === 0,
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p></p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
