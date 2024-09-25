@@ -1,8 +1,9 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import App from '../pages/app-main/App';
-import Character from '../pages/character/Character';
 import ErrorPage from '../pages/error-page/ErrorPage';
+import DetailCharacter from '../pages/detail-character/DetailCharacter';
 
+DetailCharacter
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route
@@ -13,9 +14,7 @@ const router = createBrowserRouter(
             <Route errorElement={<ErrorPage />} />
             <Route
                 path='character/:id'
-                element={<Character />}
-            // loader={contactLoader}
-            // action={contactAction}
+                element={<DetailCharacter />}
             />
         </Route>
     )

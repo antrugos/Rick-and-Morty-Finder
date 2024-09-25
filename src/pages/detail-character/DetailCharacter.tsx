@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import Favorite from "../../components/favorite/Favorite";
 import { useParams } from "react-router-dom";
-import './character.css';
+import './detailCharacter.css';
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
@@ -16,7 +16,7 @@ const GET_CHARACTER = gql`
   }
 `;
 
-const Character = () => {
+const DetailCharacter = () => {
     const { id } = useParams();
     const { loading, error, data } = useQuery(GET_CHARACTER, {
         variables: { id }
@@ -54,4 +54,4 @@ const Character = () => {
     );
 }
 
-export default Character;
+export default DetailCharacter;
