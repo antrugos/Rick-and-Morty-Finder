@@ -1,0 +1,33 @@
+.content {
+    @apply flex flex-col;
+}
+
+.card {
+    @apply px-2 py-1 mx-1 list-none;
+}
+
+.cardImg {
+    @apply card flex items-center gap-2 border-t border-gray-300;
+}
+
+.img {
+    @apply w-8 h-8 rounded-full;
+}
+
+.cardContent {
+    @apply flex flex-col;
+}
+
+.cardTitle {
+    @apply text-base font-semibold text-gray-900;
+    font-family: "Greycliff CF Figma 001";
+}
+
+.cardInfo {
+    @apply text-base text-gray-500;
+    font-family: "Greycliff CF Figma 001";
+}
+
+.heartIcon {
+    @apply ml-auto text-gray-300 hover:text-active-heart;
+}

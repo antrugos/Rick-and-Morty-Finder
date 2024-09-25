@@ -1,0 +1,27 @@
+#sidebar {
+  @apply w-88 bg-sidebar-bg border-r border-gray-300 flex flex-col;
+}
+
+i {
+  @apply text-icon-gray;
+}
+
+.searcher {
+  @apply mx-2;
+}
+
+.title {
+  @apply pt-10 px-6 pb-2 text-2xl font-bold leading-8 text-gray-800;
+}
+
+.searchForm {
+  @apply flex h-12 px-5 py-2.5 items-center gap-2 flex-[1_0_0] rounded-lg bg-gray-100;
+}
+
+.inputSearch {
+  @apply flex-1 px-3 py-2 text-gray-500 placeholder-gray-500 bg-transparent focus:outline-none;
+}
+
+.filter {
+  @apply cursor-pointer;
+}

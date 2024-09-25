@@ -1,0 +1,11 @@
+#contact {
+    @apply max-w-sm rounded overflow-hidden shadow-lg;
+}
+
+.contactImg {
+    @apply w-full h-48 object-cover rounded-full;
+}
+
+.favorite {
+    @apply absolute bottom-0 right-0 m-2;
+}
