@@ -1,0 +1,39 @@
+.filterContainer {
+    @apply fixed inset-0 p-4 z-50 flex flex-col justify-around bg-white md:static md:p-6 md:mt-1 md:bg-opacity-100 md:rounded-lg md:ring-1 md:ring-black md:ring-opacity-5 md:shadow-lg md:w-86;
+  }
+  
+  .modalResponsive {
+    @apply flex items-center gap-28
+  }
+
+  .filtersContent {
+    @apply mt-4 flex-1;
+  }
+
+  .filterTitle{
+    @apply text-base leading-6 font-semibold text-center;
+  }
+
+  .filterSection {
+    @apply py-5;
+  }
+
+  .filterType {
+    @apply text-lg font-normal mb-2 text-gray-500;
+  }
+  
+  .filterButtons {
+    @apply flex flex-wrap justify-between gap-2;
+  }
+  
+  .filterButton {
+    @apply px-3 py-2 bg-white border border-gray-200 rounded-lg cursor-pointer w-24 text-gray-900;
+  }
+
+  .filterButton:hover {
+    @apply bg-primary-100 text-primary-600 font-bold;
+  }
+
+  .filterSearch {
+    @apply bg-primary-600 text-white w-full py-2 flex justify-center items-center rounded-lg;
+  }

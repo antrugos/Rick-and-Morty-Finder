@@ -1,18 +1,19 @@
-import CharactersQuery from '../../components/characters-query/CharactersQuery';
+import { useState } from 'react';
 import { Form, Outlet } from 'react-router-dom';
+import CharactersQuery from '../../components/characters-query/CharactersQuery';
+import Filter from '../../components/filter/Filter';
 import LoupeImg from '../../assets/Search_New.svg';
 import FilterImg from '../../assets/Filter.svg';
 import './App.css';
 
 function App() {
-  // const navigation = useNavigation();
-  // const submit = useSubmit();
+  const [isActive, setIsActive] = useState(false);
 
-  // const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
+  const openFilter = () => {
+    setIsActive(!isActive);
+  }
 
-  // useEffect(() => {
-  //   document.getElementById("q").value = q;
-  // }, [q])
+
 
   return (
     <main className='main'>
@@ -40,16 +41,21 @@ function App() {
             //   submit(e.currentTarget.form, { replace: !isFirstSearch });
             // }}
             />
-            <button className='filter'>
+            <button className={`filter ${isActive ? 'filterActive' : ''}`} type='button' onClick={openFilter}>
               <img src={FilterImg} alt="filter-img" />
             </button>
           </Form>
         </div>
-        <nav>
+        {isActive && (
+          <div className='modal'>
+            <Filter setIsActive={setIsActive} />
+          </div>
+        )}
+        <nav className='navCharacters'>
           <CharactersQuery />
         </nav>
       </div>
-      <div id="detail" >
+      <div id="detail">
         <Outlet />
       </div >
     </main>

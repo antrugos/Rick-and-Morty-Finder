@@ -2,6 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import Favorite from "../../components/favorite/Favorite";
 import { useParams } from "react-router-dom";
 import './character.css';
+import { favoritesVar } from "../../cache/ApolloClient";
 
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
@@ -11,27 +12,10 @@ const GET_CHARACTER = gql`
       image
       status
       species
+      isFavorite @client
     }
   }
 `;
-
-// export async function action({ request, params }) {
-//     const formData = await request.formData();
-//     return updateContact(params.contactId, {
-//         favorite: formData.get("favorite") === "true",
-//     });
-// }
-
-// export async function loader({ params }) {
-//     const contact = await getContact(params.contactId);
-//     if (!contact) {
-//         throw new Response("", {
-//             status: 404,
-//             statusText: "Not found",
-//         });
-//     }
-//     return { contact };
-// }
 
 const Character = () => {
     const { id } = useParams();
@@ -43,14 +27,14 @@ const Character = () => {
     if (loading) return <p>Loading ...</p>;
 
     const { name, image, status, species } = data.character;
+    const isFavorite = favoritesVar().includes(id);
 
     return (
         <main id="character">
             <div className="contentCharacter">
                 <div className="characterImg">
                     <img className="img" src={image} alt={name} />
-
-                    <Favorite isFavorite={false} />
+                    <Favorite characterId={id} isFavorite={isFavorite} />
                 </div>
                 <h1 className="characterTitle">{name}</h1>
             </div>

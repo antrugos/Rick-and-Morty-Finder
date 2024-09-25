@@ -11,8 +11,8 @@
     @apply relative;
 }
 
-.img {
-    @apply w-23 h-23 rounded-full object-cover;
+.imgCharacter {
+    @apply w-8 h-8 rounded-full object-cover;
 }
 
 .favoriteButton {

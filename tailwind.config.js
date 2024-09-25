@@ -24,6 +24,10 @@ export default {
         '88': '22rem',
         '23': '4.6875rem',
       },
+      width: {
+        '81': '23.4375rem',
+        '86': '21.4375rem',
+      }
     },
   },
   plugins: [

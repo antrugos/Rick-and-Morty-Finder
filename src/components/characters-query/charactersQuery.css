@@ -1,5 +1,5 @@
 .content {
-    @apply flex flex-col h-screen overflow-y-auto scrollbar-none;
+    @apply flex flex-col max-h-[85vh];
 }
 
 .card {
@@ -11,7 +11,7 @@
 }
 
 .img {
-    @apply w-8 h-8 rounded-full;
+    @apply w-23 h-23 rounded-full;
 }
 
 .cardContent {

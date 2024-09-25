@@ -1,13 +1,13 @@
 .main {
-  @apply flex;
+  @apply flex flex-col md:flex-row h-screen;
 }
 
 #sidebar {
-  @apply w-88 bg-sidebar-bg border-r border-gray-300 flex flex-col;
+  @apply md:w-81 bg-sidebar-bg border-r border-gray-300 flex flex-col h-screen;
 }
 
 .searcher {
-  @apply mx-2;
+  @apply mx-2 md:w-88 w-full;
 }
 
 .title {
@@ -15,7 +15,7 @@
 }
 
 .searchForm {
-  @apply flex h-12 px-5 py-2.5 items-center gap-2 flex-[1_0_0] rounded-lg bg-gray-100;
+  @apply flex pl-5 pr-2 py-2.5 items-center gap-2 flex-[1_0_0] rounded-lg bg-gray-100;
 }
 
 .inputSearch {
@@ -23,7 +23,24 @@
 }
 
 .filter {
-  @apply cursor-pointer;
+  @apply cursor-pointer p-2 rounded-lg;
+}
+
+.filterActive {
+  @apply bg-primary-100;
+}
+
+.modal {
+  @apply md:flex md:ml-3 md:z-10 ;
+}
+
+.modalResponsive {
+  @apply md:hidden flex;
+}
+
+.navCharacters {
+  @apply overflow-y-auto scrollbar-none; 
+  max-height: calc(105vh - 200px);
 }
 
 #detail {
