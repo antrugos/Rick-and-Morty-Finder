@@ -1,9 +1,9 @@
-#sidebar {
-  @apply w-88 bg-sidebar-bg border-r border-gray-300 flex flex-col;
+.main {
+  @apply flex;
 }
 
-i {
-  @apply text-icon-gray;
+#sidebar {
+  @apply w-88 bg-sidebar-bg border-r border-gray-300 flex flex-col;
 }
 
 .searcher {
@@ -24,4 +24,8 @@ i {
 
 .filter {
   @apply cursor-pointer;
+}
+
+#detail {
+  @apply flex-1 px-24 w-full;
 }

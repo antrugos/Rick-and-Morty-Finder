@@ -1,11 +1,40 @@
-#contact {
-    @apply max-w-sm rounded overflow-hidden shadow-lg;
+#character {
+    @apply w-full mt-[40px] overflow-hidden bg-white font-sans;
 }
 
-.contactImg {
-    @apply w-full h-48 object-cover rounded-full;
+
+.contentCharacter {
+    @apply grid justify-items-start gap-2;
 }
 
-.favorite {
-    @apply absolute bottom-0 right-0 m-2;
+.characterImg {
+    @apply relative;
+}
+
+.img {
+    @apply w-23 h-23 rounded-full object-cover;
+}
+
+.favoriteButton {
+    @apply absolute bottom-0 -right-2 bg-white rounded-full p-1 items-center;
+}
+
+.characterTitle {
+    @apply text-center text-2xl font-bold leading-8;
+}
+
+.containerInfo {
+    @apply mt-4;
+}
+
+.info {
+    @apply flex flex-col justify-between text-base leading-6 py-4 border-t border-gray-200 first:border-t-0;
+}
+
+.info span:first-child {
+    @apply font-semibold text-gray-900;
+}
+
+.info span:last-child {
+    @apply font-medium text-gray-500;
 }

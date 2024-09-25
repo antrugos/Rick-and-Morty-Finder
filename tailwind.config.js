@@ -22,9 +22,22 @@ export default {
       },
       spacing: {
         '88': '22rem',
+        '23': '4.6875rem',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.scrollbar-none': {
+          'scrollbar-width': 'none',
+          '-ms-overflow-style': 'none',
+        },
+        '.scrollbar-none::-webkit-scrollbar': {
+          'display': 'none',
+        },
+      })
+    },
+  ],
 }
 

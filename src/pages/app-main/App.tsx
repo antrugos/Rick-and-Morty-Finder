@@ -1,4 +1,4 @@
-import CharactersQuery from '../../components/CharactersQuery/CharactersQuery';
+import CharactersQuery from '../../components/characters-query/CharactersQuery';
 import { Form, Outlet } from 'react-router-dom';
 import LoupeImg from '../../assets/Search_New.svg';
 import FilterImg from '../../assets/Filter.svg';
@@ -15,7 +15,7 @@ function App() {
   // }, [q])
 
   return (
-    <>
+    <main className='main'>
       <div id="sidebar">
         <h1 className='title'>Rick and Morty List</h1>
         <div className='searcher'>
@@ -49,10 +49,10 @@ function App() {
           <CharactersQuery />
         </nav>
       </div>
-      <div id="detail" className={"loading"} >
+      <div id="detail" >
         <Outlet />
       </div >
-    </>
+    </main>
   )
 }
 

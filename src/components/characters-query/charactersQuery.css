@@ -1,5 +1,5 @@
 .content {
-    @apply flex flex-col;
+    @apply flex flex-col h-screen overflow-y-auto scrollbar-none;
 }
 
 .card {
