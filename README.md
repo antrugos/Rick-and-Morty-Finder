@@ -51,11 +51,17 @@ The app will run on http://localhost:5173/. Open your browser and start explorin
 The Rick and Morty API is a powerful resource that allows developers to access data related to characters, episodes, and locations from the beloved animated series. By using GraphQL, you can efficiently query specific data fields, reducing the amount of data transferred and improving performance. Here’s how to get started:
 
 1. Understanding GraphQL
+<<<<<<< HEAD
 
 GraphQL is a query language for APIs that enables you to request only the data you need. Unlike REST, which exposes multiple endpoints for different resources, GraphQL uses a single endpoint that can handle various types of queries.
 
 2. Making Your First Query
 
+=======
+GraphQL is a query language for APIs that enables you to request only the data you need. Unlike REST, which exposes multiple endpoints for different resources, GraphQL uses a single endpoint that can handle various types of queries.
+
+2. Making Your First Query
+>>>>>>> da4450aa1a2e4ae972e2c969e6a2c44df9a5af28
 To interact with the Rick and Morty API, you can use the following basic query structure:
 
 ```bash
