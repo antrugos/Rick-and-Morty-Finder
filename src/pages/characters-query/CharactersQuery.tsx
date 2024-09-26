@@ -2,8 +2,9 @@ import { useQuery } from "@apollo/client";
 import { CharactersData, GET_CHARACTERS } from "../../graphql/queries";
 import FavoriteCharacter from "../../components/favorite-character/FavoriteCharacter";
 import CharacterCard from "../../components/character-card/CharacterCard";
-import './charactersQuery.css';
 import { filterData } from "../../data/filterData";
+import './charactersQuery.css';
+import { useState } from "react";
 
 type Character = {
     id: string;
@@ -19,13 +20,14 @@ type CharactersQueryProps = {
     sortOrder: 'asc' | 'desc';
     filters: string[];
     searchTerm: string;
+    onFilterCount: (count: number) => void;
+    onResultsCount: (count: number) => void;
 }
 
-const CharactersQuery: React.FC<CharactersQueryProps> = ({ sortOrder, filters, searchTerm }) => {
+const CharactersQuery: React.FC<CharactersQueryProps> = ({ sortOrder, filters, searchTerm, onFilterCount, onResultsCount }) => {
     const { loading, error, data } = useQuery<CharactersData>(GET_CHARACTERS);
+    const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([]);
 
-    if (loading) return <p></p>;
-    if (error) return <p>Error : {error.message}</p>;
 
     let characters: Character[] = data?.characters?.results || [];
 
@@ -64,14 +66,15 @@ const CharactersQuery: React.FC<CharactersQueryProps> = ({ sortOrder, filters, s
                 return true;
             });
         });
+
     }
 
-    const sortedCharacters = [...characters].sort((a, b) => {
-        if (sortOrder === 'asc') {
-            return a.name.localeCompare(b.name);
-        }
-        return b.name.localeCompare(a.name);
-    });
+    const sortedCharacters = [...characters].sort((a, b) =>
+        sortOrder === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+    );
+
+    if (loading) return <p></p>;
+    if (error) return <p>Error : {error.message}</p>;
 
     return (
         <>

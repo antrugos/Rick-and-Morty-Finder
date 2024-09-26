@@ -57,3 +57,15 @@
   @apply block md:hidden;
   @apply cursor-pointer p-2;
 }
+
+.filterInfo {
+  @apply flex gap-3 items-center mb-4;
+}
+
+.filterResults {
+  @apply text-results;
+}
+
+.filterContainerResults {
+  @apply inline-block py-1 px-2 bg-green-400 bg-opacity-30 rounded-lg text-green-700;
+}

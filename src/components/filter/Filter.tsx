@@ -2,12 +2,12 @@ import { useState } from "react";
 import { filterData } from "../../data/filterData";
 import "./filter.css";
 
-type Props = {
+type FilterProps = {
     setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
     onFilter: (selectedFilters: string[]) => void;
 }
 
-const Filter = ({ setIsActive, onFilter }: Props) => {
+const Filter = ({ setIsActive, onFilter }: FilterProps) => {
     const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
     const toggleOption = (id: string) => {

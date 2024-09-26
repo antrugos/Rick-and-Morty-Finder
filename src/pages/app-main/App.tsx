@@ -11,6 +11,8 @@ function App() {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [filterCount, setFilterCount] = useState<number>(0);
+  const [resultsCount, setResultsCount] = useState<number>(0);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -24,7 +26,7 @@ function App() {
 
   const handleFilter = (filters: string[]) => {
     setSelectedFilters(filters);
-    console.log('Selected Filters:', filters);
+    setFilterCount(filters.length);
   };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +72,21 @@ function App() {
           </div>
         )}
         <nav className='navCharacters'>
-          <CharactersQuery sortOrder={sortOrder} filters={selectedFilters} searchTerm={searchTerm} />
+          {filterCount > 0 && (
+            <div className="filterInfo">
+              <p className='filterResults'>{resultsCount} results</p>
+              <div className='filterContainerResults'>
+                {filterCount} Filter{filterCount > 1 ? 's' : ''}
+              </div>
+            </div>
+          )}
+          <CharactersQuery
+            sortOrder={sortOrder}
+            filters={selectedFilters}
+            searchTerm={searchTerm}
+            onFilterCount={setFilterCount}
+            onResultsCount={setResultsCount}
+          />
         </nav>
       </div>
       {!rootPath && (
