@@ -11,6 +11,7 @@ const GET_CHARACTER = gql`
       image
       status
       species
+      gender
       isFavorite @client
     }
   }
@@ -25,7 +26,7 @@ const DetailCharacter = () => {
     if (loading) return <p></p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const { name, image, status, species, isFavorite } = data.character;
+    const { name, image, status, species, gender, isFavorite } = data.character;
 
     return (
         <main id="character">
@@ -46,8 +47,8 @@ const DetailCharacter = () => {
                     <span>{status}</span>
                 </p>
                 <p className="info">
-                    <span>Occupation</span>
-                    <span>Princess</span>
+                    <span>Gender</span>
+                    <span>{gender}</span>
                 </p>
             </div>
         </main>

@@ -38,15 +38,21 @@ const GET_CHARACTERS = gql`
 
 type Props = {
     sortOrder: 'asc' | 'desc';
+    filters: string[];
 }
 
-const CharactersQuery = ({ sortOrder }: Props) => {
+const CharactersQuery = ({ sortOrder, filters }: Props) => {
     const { loading, error, data } = useQuery<CharactersData>(GET_CHARACTERS);
 
     if (loading) return <p></p>;
     if (error) return <p>Error : {error.message}</p>;
 
     const characters = data?.characters?.results || [];
+
+
+    const filteredCharacters = characters.filter(character => {
+        return filters.length === 0 || filters.includes(character.species);
+    });
 
     const sortedCharacters = [...characters].sort((a, b) => {
         if (sortOrder === 'asc') {

@@ -1,11 +1,26 @@
+import { useState } from "react";
 import { filterData } from "../../data/filterData";
 import "./filter.css";
 
 type Props = {
     setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+    onFilter: (selectedFilters: string[]) => void;
 }
 
-const Filter = ({ setIsActive }: Props) => {
+const Filter = ({ setIsActive, onFilter }: Props) => {
+    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+
+    const toggleOption = (id: string) => {
+        setSelectedOptions(prev =>
+            prev.includes(id) ? prev.filter(option => option !== id) : [...prev, id]
+        );
+    };
+
+    const handleSearch = () => {
+        onFilter(selectedOptions);
+        setIsActive(false);
+    }
+
     return (
         <main className="filterContainer">
             <div className='modalResponsive'>
@@ -21,8 +36,12 @@ const Filter = ({ setIsActive }: Props) => {
                     <section className="filterSection" key={filtDat.id}>
                         <h2 className="filterType">{filtDat.type}</h2>
                         <div className="filterButtons">
-                            {filtDat.options.map((option) => (
-                                <button key={option.id} className="filterButton">
+                            {filtDat.options.map((option, index) => (
+                                <button
+                                    key={`${filtDat.id}-${index}`}
+                                    className={`filterButton ${selectedOptions.includes(option.id.toString()) ? 'filterButton-active' : ''}`}
+                                    onClick={() => toggleOption(option.id.toString())}
+                                >
                                     {option.text}
                                 </button>
                             ))}
@@ -30,7 +49,7 @@ const Filter = ({ setIsActive }: Props) => {
                     </section>
                 ))}
             </div>
-            <button className="filterSearch">Filter</button>
+            <button className="filterSearch" onClick={handleSearch}>Filter</button>
         </main>
     )
 }

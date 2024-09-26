@@ -23,14 +23,14 @@
   }
   
   .filterButtons {
-    @apply flex flex-wrap justify-between gap-2;
+    @apply flex justify-between gap-2;
   }
   
   .filterButton {
     @apply px-3 py-2 bg-white border border-gray-200 rounded-lg cursor-pointer w-24 text-gray-900;
   }
 
-  .filterButton:hover {
+  .filterButton-active {
     @apply bg-primary-100 text-primary-600 font-bold;
   }
 

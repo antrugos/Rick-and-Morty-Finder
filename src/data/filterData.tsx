@@ -12,18 +12,18 @@ export const filterData = [
         "id": 2,
         "type": "Species",
         "options": [
-            { "id": 1, "text": "All" },
-            { "id": 2, "text": "Human" },
-            { "id": 3, "text": "alien" },
+            { "id": 4, "text": "All" },
+            { "id": 5, "text": "Human" },
+            { "id": 6, "text": "alien" },
         ]
     },
     {
         "id": 2,
         "type": "Gender",
         "options": [
-            { "id": 1, "text": "Male" },
-            { "id": 2, "text": "Female" },
-            { "id": 3, "text": "unknown" },
+            { "id": 7, "text": "Male" },
+            { "id": 8, "text": "Female" },
+            { "id": 9, "text": "unknown" },
         ]
     }
 

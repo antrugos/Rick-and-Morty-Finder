@@ -9,6 +9,7 @@ import './App.css';
 function App() {
   const [isActive, setIsActive] = useState(false);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const openFilter = () => {
     setIsActive(!isActive);
@@ -17,6 +18,11 @@ function App() {
   const handleSort = () => {
     setSortOrder(prevOrder => prevOrder === 'asc' ? 'desc' : 'asc')
   }
+
+  const handleFilter = (filters: string[]) => {
+    setSelectedFilters(filters);
+    console.log('Selected Filters:', filters);
+  };
 
   return (
     <main className='main'>
@@ -44,7 +50,11 @@ function App() {
             //   submit(e.currentTarget.form, { replace: !isFirstSearch });
             // }}
             />
-            <button className={`filter ${isActive ? 'filterActive' : ''}`} type='button' onClick={openFilter}>
+            <button
+              className={`filter ${isActive ? 'filterActive' : ''}`}
+              type='button'
+              onClick={openFilter}
+            >
               <img src={FilterImg} alt="filter-img" />
             </button>
           </Form>
@@ -54,11 +64,11 @@ function App() {
         </div>
         {isActive && (
           <div className='modal'>
-            <Filter setIsActive={setIsActive} />
+            <Filter setIsActive={setIsActive} onFilter={handleFilter} />
           </div>
         )}
         <nav className='navCharacters'>
-          <CharactersQuery sortOrder={sortOrder} />
+          <CharactersQuery sortOrder={sortOrder} filters={selectedFilters} />
         </nav>
       </div>
       <div id="detail">
