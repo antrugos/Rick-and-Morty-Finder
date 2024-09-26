@@ -72,3 +72,19 @@
   .addCommentButton {
     @apply mt-2 bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-700 p-2 rounded-md;
   }
+
+  .deletedMessage {
+    @apply flex flex-col items-center justify-center bg-primary-100 p-4 rounded-lg;
+  }
+
+  .deletedStatus {
+    @apply text-red-500 font-semibold;
+  }
+  
+  .restoreButton {
+    @apply mt-2 px-4 py-2 bg-active-heart text-white rounded hover:bg-green-600;
+  }
+
+  .deleteButton {
+    @apply my-2 p-2 bg-primary-700 text-white rounded-md font-bold;
+  }

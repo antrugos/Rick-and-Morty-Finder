@@ -20,7 +20,7 @@ type CharactersData = {
     }
 }
 
-const GET_CHARACTERS = gql`
+export const GET_CHARACTERS = gql`
   query GetCharacters {
     characters {
       results {
@@ -31,6 +31,7 @@ const GET_CHARACTERS = gql`
         species
         gender
         isFavorite @client
+        isDeleted @client
       }
     }
   }

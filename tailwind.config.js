@@ -10,8 +10,6 @@ export default {
         'highlight-yellow': '#eeb004',
         'icon-gray': '#818181',
         'hover-bg': '#e3e3e3',
-        'active-blue': 'hsl(224, 98%, 58%)',
-        'active-pending': 'hsl(224, 98%, 58%)',
         'primary-100': '#EEE3FF',
         'primary-600': '#8054C7',
         'primary-700': '#5A3696',

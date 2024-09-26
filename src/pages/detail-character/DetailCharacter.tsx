@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { gql, useQuery } from "@apollo/client";
+import { gql, useApolloClient, useQuery } from "@apollo/client";
 import Favorite from "../../components/favorite/Favorite";
 import { useParams } from "react-router-dom";
 import './detailCharacter.css';
+import Deleted from "../../components/deleted/Deleted";
 
-const GET_CHARACTER = gql`
+export const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
     character(id: $id) {
       id
@@ -14,6 +15,7 @@ const GET_CHARACTER = gql`
       species
       gender
       isFavorite @client
+      isDeleted @client
     }
   }
 `;
@@ -30,7 +32,7 @@ const DetailCharacter = () => {
     if (loading) return <p></p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const { name, image, status, species, gender, isFavorite } = data.character;
+    const { name, image, status, species, gender, isFavorite, isDeleted } = data.character;
 
     const characterCommets = comments[id as string] || [];
 
@@ -39,6 +41,43 @@ const DetailCharacter = () => {
             setComments({ ...comments, [id as string]: [...characterCommets, newComment] });
             setNewComment('');
         }
+    }
+
+    const client = useApolloClient();
+
+    const handleDelete = () => {
+        client.writeFragment({
+            id: `Character:${id}`,
+            fragment: gql`
+              fragment UpdateCharacter on Character {
+                isDeleted
+              }
+            `,
+            data: {
+                isDeleted: true,
+            },
+        });
+    };
+
+
+    const handleRestore = () => {
+        client.writeFragment({
+            id: `Character:${id}`,
+            fragment: gql`
+              fragment UpdateCharacter on Character {
+                isDeleted
+              }
+            `,
+            data: {
+                isDeleted: false,
+            },
+        });
+    };
+
+    if (isDeleted) {
+        return (
+            <Deleted name={name} characterId={id || ''} handleRestore={handleRestore} />
+        );
     }
 
     return (
@@ -79,6 +118,7 @@ const DetailCharacter = () => {
                 />
                 <button className="addCommentButton" onClick={handleAddComment}>Add Comment</button>
             </section>
+            <button className="deleteButton" onClick={handleDelete}>Delete</button>
         </main>
     );
 }
