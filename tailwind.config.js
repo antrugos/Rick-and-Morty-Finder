@@ -27,7 +27,10 @@ export default {
       width: {
         '81': '23.4375rem',
         '86': '21.4375rem',
-      }
+      },
+      padding: {
+        '3.2': '0.8125rem',
+      },
     },
   },
   plugins: [

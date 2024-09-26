@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Outlet } from 'react-router-dom';
+import { Form, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import CharactersQuery from '../../components/characters-query/CharactersQuery';
 import Filter from '../../components/filter/Filter';
 import LoupeImg from '../../assets/Search_New.svg';
@@ -10,6 +10,8 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const openFilter = () => {
     setIsActive(!isActive);
@@ -24,6 +26,7 @@ function App() {
     console.log('Selected Filters:', filters);
   };
 
+  const rootPath = location.pathname === '/';
   return (
     <main className='main'>
       <div id="sidebar">
@@ -71,9 +74,15 @@ function App() {
           <CharactersQuery sortOrder={sortOrder} filters={selectedFilters} />
         </nav>
       </div>
-      <div id="detail">
-        <Outlet />
-      </div >
+      {!rootPath && (
+        <div id="detail">
+          <button className="backButton" onClick={() => navigate("/")}>
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 26L10 19M10 19L17 12M10 19L28 19" stroke="#8054C7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <Outlet />
+        </div >)}
     </main>
   )
 }

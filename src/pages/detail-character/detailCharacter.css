@@ -2,6 +2,9 @@
     @apply w-full mt-[40px] overflow-hidden bg-white font-sans;
 }
 
+.backButton {
+    
+}
 
 .contentCharacter {
     @apply grid justify-items-start gap-2;
@@ -28,7 +31,7 @@
 }
 
 .info {
-    @apply flex flex-col justify-between text-base leading-6 py-4 border-t border-gray-200 first:border-t-0;
+    @apply flex flex-col justify-between text-base leading-6 py-3.2 border-t border-gray-200 first:border-t-0;
 }
 
 .info span:first-child {
@@ -38,3 +41,34 @@
 .info span:last-child {
     @apply font-medium text-gray-500;
 }
+
+.commentsSection {
+    @apply mt-6;
+  }
+  
+  .commentsSection h2 {
+    @apply font-semibold text-gray-900;
+  }
+  .commentsList {
+    @apply list-none space-y-2 font-medium text-gray-500;
+  }
+  
+  .comment {
+    @apply p-2 rounded-md my-2;
+  }
+
+  .comment:nth-child(odd) {
+    @apply bg-gray-100;
+  }
+
+  .comment:nth-child(even) {
+    @apply bg-primary-100;
+  }
+  
+  .commentInput {
+    @apply w-full mt-4 p-2 border border-gray-300 rounded-md resize-none outline outline-0 min-h-[100px];
+  }
+  
+  .addCommentButton {
+    @apply mt-2 bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-700 p-2 rounded-md;
+  }

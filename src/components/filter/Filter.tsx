@@ -26,7 +26,7 @@ const Filter = ({ setIsActive, onFilter }: Props) => {
             <div className='modalResponsive'>
                 <button onClick={() => setIsActive(false)}>
                     <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17 26L10 19M10 19L17 12M10 19L28 19" stroke="#8054C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M17 26L10 19M10 19L17 12M10 19L28 19" stroke="#8054C7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                 </button>
                 <h1 className="filterTitle">Filters</h1>

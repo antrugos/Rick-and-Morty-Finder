@@ -25,10 +25,10 @@ const FavoritesList = () => {
 
   return (
     <ul>
-      {data.charactersByIds.map(({ id, name, image }) => (
-        <li key={id}>
-          <img src={image} alt={name} />
-          <p>{name}</p>
+      {data.charactersByIds.map((charactersById: []) => (
+        <li key={charactersById.id}>
+          <img src={charactersById.image} alt={charactersById.name} />
+          <p>{charactersById.name}</p>
         </li>
       ))}
     </ul>

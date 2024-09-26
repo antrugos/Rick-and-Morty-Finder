@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import Favorite from "../../components/favorite/Favorite";
 import { useParams } from "react-router-dom";
@@ -18,6 +19,9 @@ const GET_CHARACTER = gql`
 `;
 
 const DetailCharacter = () => {
+    const [comments, setComments] = useState<{ [key: string]: string[] }>({});
+    const [newComment, setNewComment] = useState<string>("");
+
     const { id } = useParams();
     const { loading, error, data } = useQuery(GET_CHARACTER, {
         variables: { id }
@@ -28,6 +32,15 @@ const DetailCharacter = () => {
 
     const { name, image, status, species, gender, isFavorite } = data.character;
 
+    const characterCommets = comments[id as string] || [];
+
+    const handleAddComment = () => {
+        if (newComment.trim()) {
+            setComments({ ...comments, [id as string]: [...characterCommets, newComment] });
+            setNewComment('');
+        }
+    }
+
     return (
         <main id="character">
             <div className="contentCharacter">
@@ -37,20 +50,35 @@ const DetailCharacter = () => {
                 </div>
                 <h1 className="characterTitle">{name}</h1>
             </div>
-            <div className="containerInfo">
+            <section className="containerInfo">
                 <p className="info">
                     <span>Specie</span>
                     <span>{species}</span>
                 </p>
                 <p className="info">
                     <span>Status</span>
-                    <span>{status}</span>
+                    <span>{status === "Dead" ? "🔴" : "🟢"} {status}</span>
                 </p>
                 <p className="info">
                     <span>Gender</span>
                     <span>{gender}</span>
                 </p>
-            </div>
+            </section>
+            <section className="commentsSection">
+                <h2>Comments</h2>
+                <ul className="commentList">
+                    {characterCommets.map((comment, index) => (
+                        <li key={index} className="comment">{comment}</li>
+                    ))}
+                </ul>
+                <textarea
+                    className="commentInput"
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                    placeholder="Add a comment..."
+                />
+                <button className="addCommentButton" onClick={handleAddComment}>Add Comment</button>
+            </section>
         </main>
     );
 }

@@ -48,5 +48,12 @@
 }
 
 #detail {
-  @apply flex-1 px-24 w-full;
+  @apply flex-1 px-6 md:px-24 w-full h-full md:h-auto;
+  @apply fixed top-0 left-0 z-50 md:static;
+  @apply bg-white;
+}
+
+.backButton {
+  @apply block md:hidden;
+  @apply cursor-pointer p-2;
 }
