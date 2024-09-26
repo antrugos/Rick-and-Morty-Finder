@@ -1,29 +1,29 @@
 export const filterData = [
     {
-        "id": 1,
+        "id": 900,
         "type": "Character",
         "options": [
-            { "id": 1, "text": "All" },
-            { "id": 2, "text": "Starred" },
-            { "id": 3, "text": "Others" },
+            { "id": 901, "text": "All" },
+            { "id": 902, "text": "Starred" },
+            { "id": 903, "text": "Others" },
         ]
     },
     {
-        "id": 2,
+        "id": 910,
         "type": "Species",
         "options": [
-            { "id": 4, "text": "All" },
-            { "id": 5, "text": "Human" },
-            { "id": 6, "text": "alien" },
+            { "id": 911, "text": "All" },
+            { "id": 912, "text": "Human" },
+            { "id": 913, "text": "alien" },
         ]
     },
     {
-        "id": 2,
+        "id": 920,
         "type": "Gender",
         "options": [
-            { "id": 7, "text": "Male" },
-            { "id": 8, "text": "Female" },
-            { "id": 9, "text": "unknown" },
+            { "id": 921, "text": "Male" },
+            { "id": 922, "text": "Female" },
+            { "id": 923, "text": "unknown" },
         ]
     }
 

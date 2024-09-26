@@ -3,6 +3,7 @@ import { CharactersData, GET_CHARACTERS } from "../../graphql/queries";
 import FavoriteCharacter from "../../components/favorite-character/FavoriteCharacter";
 import CharacterCard from "../../components/character-card/CharacterCard";
 import './charactersQuery.css';
+import { filterData } from "../../data/filterData";
 
 type Character = {
     id: string;
@@ -34,20 +35,43 @@ const CharactersQuery: React.FC<CharactersQueryProps> = ({ sortOrder, filters, s
         );
     }
 
+    const filterHandlers: Record<string, (character: Character, optionText: string) => boolean> = {
+        Species: (character, optionText) =>
+            optionText === "All" || character.species.toLowerCase() === optionText.toLowerCase(),
+        Gender: (character, optionText) =>
+            optionText === "All" || character.gender.toLowerCase() === optionText.toLowerCase(),
+        Character: (character, optionText) => {
+            if (optionText === "Starred") return character.isFavorite;
+            if (optionText === "Others") return !character.isFavorite;
+            return true;
+        }
+    };
+
     if (filters.length > 0) {
-        characters = characters.filter((character) =>
-            filters.includes(character.id)
-        );
+        characters = characters.filter((character) => {
+            return filterData.every((filterSection) => {
+                const selectedOption = filters.find((filterId) =>
+                    filterSection.options.some((option) => option.id.toString() === filterId)
+                );
+
+                if (selectedOption) {
+                    const optionData = filterSection.options.find(option => option.id.toString() === selectedOption);
+                    const filterHandler = filterHandlers[filterSection.type];
+
+                    return filterHandler ? filterHandler(character, optionData!.text) : true;
+                }
+
+                return true;
+            });
+        });
     }
 
-    const sortedCharacters = characters.sort((a, b) => {
+    const sortedCharacters = [...characters].sort((a, b) => {
         if (sortOrder === 'asc') {
             return a.name.localeCompare(b.name);
         }
         return b.name.localeCompare(a.name);
     });
-
-    // const favoriteCharacters = characters.filter(character => !character.isFavorite);
 
     return (
         <>
