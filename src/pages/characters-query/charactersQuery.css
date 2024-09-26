@@ -2,6 +2,10 @@
     @apply flex flex-col max-h-[85vh];
 }
 
+.titleCharacter {
+    @apply p-4 text-gray-500 font-semibold text-xs leading-4 tracking-wider;
+}
+
 .card {
     @apply px-2 py-1 mx-1 list-none;
 }
