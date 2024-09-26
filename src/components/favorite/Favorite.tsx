@@ -17,6 +17,8 @@ const Favorite = ({ characterId, isFavorite }: Props) => {
         }
     `;
 
+    console.log(isFavorite)
+
     const toogleFavorite = () => {
         client.mutate({
             mutation: TOGGLE_FAVORITE,

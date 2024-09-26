@@ -1,50 +1,69 @@
-# React + TypeScript + Vite
+# 🚀 Rick and Morty API App - GraphQL
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome! This is a **TypeScript** project that uses the **Rick and Morty API** via **GraphQL** to display characters from the famous series. The characters are detailed with their image, full name, species, status, and gender.
 
-Currently, two official plugins are available:
+## 🛠️ Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **TypeScript**: For developing the user interface.
+- **GraphQL**: To fetch data from the Rick and Morty API.
+- **Apollo Client**: To manage queries and GraphQL state in the frontend.
+- **Vite**: For a fast development environment.
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Fetch characters, displaying their image, full name, species, status, and gender.
+- Filter characters by name, species, and gender.
+- Navigate between episodes and related characters.
 
-- Configure the top-level `parserOptions` property like this:
+## 📦 Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Follow these steps to set up the project on your local machine:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/antrugos/Rick-and-Morty-Finder.git
+   ```
+2. Navigate to the project folder:
+
+ ```bash
+   cd verifypage
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+3. Install depedencies:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+ ```bash
+   npm install
 ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+## 🖼️ App Preview
+
+The app will run on http://localhost:5173/. Open your browser and start exploring the Rick and Morty universe!
+
+## 🤖 Rick and Morty API
+
+This project uses the Rick and Morty API through GraphQL. You can view the official documentation here: Rick and Morty API GraphQL.
+
+## 🎯 Styling with Tailwind
+
+This project utilizes **Tailwind CSS** to style the application efficiently and modularly. Some of the benefits of using **Tailwind** in this project include:
+
+- **Predefined Styles**: Tailwind provides a wide range of predefined classes that simplify UI design, such as colors, typography, sizes, and more.
+- **Responsive Design**: Thanks to Tailwind’s responsive utilities, the app easily adapts to different screen sizes.
+- **Flexibility and Speed**: Tailwind allows you to create a clean and scalable design without needing to write custom CSS files, keeping the CSS file compact.
+
+In addition, this project employs the `@apply` directive in a CSS script to define reusable styles, reducing the need for inline styles directly in the HTML. This keeps the code cleaner and more maintainable.
+
+```bash
+    .button {
+       @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+    }
+```
+
+Using `@apply` allows us to reuse Tailwind’s utility classes while keeping the styling centralized in a CSS file.

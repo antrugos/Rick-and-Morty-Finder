@@ -24,6 +24,8 @@ const DetailCharacter = () => {
     const [comments, setComments] = useState<{ [key: string]: string[] }>({});
     const [newComment, setNewComment] = useState<string>("");
 
+    const client = useApolloClient();
+
     const { id } = useParams();
     const { loading, error, data } = useQuery(GET_CHARACTER, {
         variables: { id }
@@ -33,7 +35,6 @@ const DetailCharacter = () => {
     if (error) return <p>Error: {error.message}</p>;
 
     const { name, image, status, species, gender, isFavorite, isDeleted } = data.character;
-
     const characterCommets = comments[id as string] || [];
 
     const handleAddComment = () => {
@@ -42,8 +43,6 @@ const DetailCharacter = () => {
             setNewComment('');
         }
     }
-
-    const client = useApolloClient();
 
     const handleDelete = () => {
         client.writeFragment({
@@ -58,7 +57,6 @@ const DetailCharacter = () => {
             },
         });
     };
-
 
     const handleRestore = () => {
         client.writeFragment({

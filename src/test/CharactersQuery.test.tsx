@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import CharactersQuery from '../components/characters-query/CharactersQuery';
+import CharactersQuery from '../pages/characters-query/CharactersQuery';
 import { MockedProvider } from '@apollo/client/testing';
-import { GET_CHARACTERS } from '../components/characters-query/CharactersQuery';
+import { GET_CHARACTERS } from '../pages/characters-query/CharactersQuery';
 
 const mocks = [
     {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Form, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import CharactersQuery from '../../components/characters-query/CharactersQuery';
+import CharactersQuery from '../characters-query/CharactersQuery';
 import Filter from '../../components/filter/Filter';
 import LoupeImg from '../../assets/Search_New.svg';
 import FilterImg from '../../assets/Filter.svg';
