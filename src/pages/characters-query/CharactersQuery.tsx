@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import { favoritesVar } from "../../cache/ApolloClient";
 import { useEffect, useState } from "react";
 import { CharactersData, GET_CHARACTERS } from "../../graphql/queries";
 import FavoriteCharacter from "../../components/favorite-character/FavoriteCharacter";
@@ -27,6 +28,10 @@ const CharactersQuery: React.FC<CharactersQueryProps> = ({ sortOrder, filters, s
     const { loading, error, data } = useQuery<CharactersData>(GET_CHARACTERS);
     const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([]);
 
+    useEffect(() => {
+        const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+        favoritesVar(storedFavorites);
+    }, []);
 
     useEffect(() => {
         if (data?.characters?.results) {
@@ -82,7 +87,7 @@ const CharactersQuery: React.FC<CharactersQueryProps> = ({ sortOrder, filters, s
     if (error) return <p>Error : {error.message}</p>;
 
     return (
-        <>
+        <main>
             <FavoriteCharacter />
             <ul className="content">
                 <h1 className="titleCharacter">CHARACTER ({filteredCharacters.length})</h1>
@@ -94,7 +99,7 @@ const CharactersQuery: React.FC<CharactersQueryProps> = ({ sortOrder, filters, s
                     <p className="notFound">No characters found</p>
                 )}
             </ul>
-        </>
+        </main>
     );
 }
 

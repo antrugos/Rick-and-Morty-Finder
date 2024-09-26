@@ -15,9 +15,15 @@ const FavoriteCharacter = () => {
   return (
     <main className=''>
       <h1 className="titleCharacter">STARRED CHARACTER ({favoriteCharacters.length})</h1>
-      {favoriteCharacters.map((favoriteCharacter) => (
-        <CharacterCard key={favoriteCharacter.id} {...favoriteCharacter} />
-      ))}
+      <ul className="favoriteCharactersList">
+        {favoriteCharacters.length > 0 ? (
+          favoriteCharacters.map((favoriteCharacter) => (
+            <CharacterCard key={favoriteCharacter.id} {...favoriteCharacter} />
+          ))
+        ) : (
+          <p></p>
+        )}
+      </ul>
     </main>
   )
 }

@@ -1,6 +1,8 @@
 import { makeVar, InMemoryCache, ApolloClient } from '@apollo/client';
 
 export const favoritesVar = makeVar<string[]>([]);
+const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+favoritesVar(storedFavorites);
 
 export const cache = new InMemoryCache({
     typePolicies: {

@@ -11,6 +11,8 @@ type CharacterCardProps = {
 };
 
 const CharacterCard = ({ id, name, image, species, isFavorite }: CharacterCardProps) => {
+    console.log(name, "isFavorite:", isFavorite);
+
     return (
         <li className="card">
             <Link to={`/character/${id}`}>

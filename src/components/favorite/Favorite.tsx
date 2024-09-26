@@ -17,24 +17,24 @@ const Favorite = ({ characterId, isFavorite }: Props) => {
         }
     `;
 
-    console.log(isFavorite)
-
     const toogleFavorite = () => {
-        client.mutate({
-            mutation: TOGGLE_FAVORITE,
-            variables: { id: characterId },
-            update: () => {
-                const currentFavorites = favoritesVar();
-                let updatedFavorites;
+        const currentFavorites = favoritesVar();
+        let updatedFavorites;
 
-                if (currentFavorites.includes(characterId)) {
-                    updatedFavorites = currentFavorites.filter(favId => favId !== characterId);
-                } else {
-                    updatedFavorites = [...currentFavorites, characterId];
-                }
-                favoritesVar(updatedFavorites);
-                localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-            }
+        if (currentFavorites.includes(characterId)) {
+            updatedFavorites = currentFavorites.filter(favId => favId !== characterId);
+        } else {
+            updatedFavorites = [...currentFavorites, characterId];
+        }
+
+        favoritesVar(updatedFavorites);
+        localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+
+        client.cache.modify({
+            id: client.cache.identify({ __typename: 'Character', id: characterId }),
+            fields: {
+                isFavorite: () => updatedFavorites.includes(characterId),
+            },
         });
     }
 
