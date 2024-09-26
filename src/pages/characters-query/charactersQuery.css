@@ -35,3 +35,7 @@
 .heartIcon {
     @apply ml-auto text-gray-300 hover:text-active-heart;
 }
+
+.notFound {
+    @apply p-4 font-bold text-primary-600 bg-gray-100;
+}

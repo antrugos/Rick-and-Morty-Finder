@@ -4,43 +4,63 @@ import FavoriteCharacter from "../../components/favorite-character/FavoriteChara
 import CharacterCard from "../../components/character-card/CharacterCard";
 import './charactersQuery.css';
 
+type Character = {
+    id: string;
+    image: string;
+    name: string;
+    status: string;
+    species: string;
+    gender: string;
+    isFavorite: boolean;
+};
 
-
-type Props = {
+type CharactersQueryProps = {
     sortOrder: 'asc' | 'desc';
     filters: string[];
+    searchTerm: string;
 }
 
-const CharactersQuery = ({ sortOrder, filters }: Props) => {
+const CharactersQuery: React.FC<CharactersQueryProps> = ({ sortOrder, filters, searchTerm }) => {
     const { loading, error, data } = useQuery<CharactersData>(GET_CHARACTERS);
 
     if (loading) return <p></p>;
     if (error) return <p>Error : {error.message}</p>;
 
-    const characters = data?.characters?.results || [];
+    let characters: Character[] = data?.characters?.results || [];
 
+    if (searchTerm) {
+        characters = characters.filter((character) =>
+            character.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }
 
-    const filteredCharacters = characters.filter(character => {
-        return filters.length === 0 || filters.includes(character.species);
-    });
+    if (filters.length > 0) {
+        characters = characters.filter((character) =>
+            filters.includes(character.id)
+        );
+    }
 
-    const sortedCharacters = [...characters].sort((a, b) => {
+    const sortedCharacters = characters.sort((a, b) => {
         if (sortOrder === 'asc') {
             return a.name.localeCompare(b.name);
         }
         return b.name.localeCompare(a.name);
     });
 
-    const favoriteCharacters = characters.filter(character => !character.isFavorite);
+    // const favoriteCharacters = characters.filter(character => !character.isFavorite);
 
     return (
         <>
             <FavoriteCharacter />
             <ul className="content">
-                <h1 className="titleCharacter">CHARACTER ({favoriteCharacters.length})</h1>
-                {sortedCharacters.map((character) => (
-                    <CharacterCard key={character.id} {...character} />
-                ))}
+                <h1 className="titleCharacter">CHARACTER ({sortedCharacters.length})</h1>
+                {sortedCharacters.length > 0 ? (
+                    sortedCharacters.map((character) => (
+                        <CharacterCard key={character.id} {...character} />
+                    ))
+                ) : (
+                    <p className="notFound">No characters found</p>
+                )}
             </ul>
         </>
     );

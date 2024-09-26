@@ -10,6 +10,7 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,18 +27,19 @@ function App() {
     console.log('Selected Filters:', filters);
   };
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  }
+
   const rootPath = location.pathname === '/';
+
   return (
     <main className='main'>
       <div id="sidebar">
         <h1 className='title'>Rick and Morty List</h1>
         <div className='searcher'>
           <Form id="search-form" role="search" className='searchForm'>
-            <div
-              id="search-spinner"
-              aria-hidden
-            // hidden={!searching}
-            >
+            <div>
               <img src={LoupeImg} alt="loupe-img" />
             </div>
             <input
@@ -47,11 +49,8 @@ function App() {
               placeholder="Search or filter results"
               type="search"
               name="q"
-            // defaultValue={q}
-            // onChange={(e) => {
-            //   const isFirstSearch = q == null;
-            //   submit(e.currentTarget.form, { replace: !isFirstSearch });
-            // }}
+              value={searchTerm}
+              onChange={handleSearch}
             />
             <button
               className={`filter ${isActive ? 'filterActive' : ''}`}
@@ -71,7 +70,7 @@ function App() {
           </div>
         )}
         <nav className='navCharacters'>
-          <CharactersQuery sortOrder={sortOrder} filters={selectedFilters} />
+          <CharactersQuery sortOrder={sortOrder} filters={selectedFilters} searchTerm={searchTerm} />
         </nav>
       </div>
       {!rootPath && (
