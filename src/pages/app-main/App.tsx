@@ -62,9 +62,12 @@ function App() {
               <img src={FilterImg} alt="filter-img" />
             </button>
           </Form>
-          <button className='sortButton' onClick={handleSort}>
-            {sortOrder === 'asc' ? '🔼' : '🔽'}
-          </button>
+          <div className='sorted'>
+            Sort
+            <button className='sortButton' onClick={handleSort}>
+              {sortOrder === 'asc' ? '🔼' : '🔽'}
+            </button>
+          </div>
         </div>
         {isActive && (
           <div className='modal'>
@@ -76,7 +79,7 @@ function App() {
             <div className="filterInfo">
               <p className='filterResults'>{resultsCount} results</p>
               <div className='filterContainerResults'>
-                {filterCount} Filter{filterCount > 1 ? 's' : ''}
+                <p className='filterResultsText'>{filterCount} Filter{filterCount > 1 ? 's' : ''}</p>
               </div>
             </div>
           )}
@@ -84,7 +87,6 @@ function App() {
             sortOrder={sortOrder}
             filters={selectedFilters}
             searchTerm={searchTerm}
-            onFilterCount={setFilterCount}
             onResultsCount={setResultsCount}
           />
         </nav>

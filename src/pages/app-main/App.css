@@ -59,13 +59,21 @@
 }
 
 .filterInfo {
-  @apply flex gap-3 items-center mb-4;
+  @apply flex px-8 justify-between items-center mb-4;
 }
 
 .filterResults {
-  @apply text-results;
+  @apply text-results font-semibold text-[16px] leading-[20.88px];
 }
 
 .filterContainerResults {
-  @apply inline-block py-1 px-2 bg-green-400 bg-opacity-30 rounded-lg text-green-700;
+  @apply inline-block py-1 px-4 bg-container-filter bg-opacity-30 rounded-full text-green-700;
+}
+
+.sorted {
+  @apply py-4 flex justify-center items-center gap-4 text-gray-500 font-semibold
+}
+
+.filterResultsText {
+  @apply font-semibold text-[14px] leading-[20px] text-center;
 }

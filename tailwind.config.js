@@ -15,6 +15,7 @@ export default {
         'primary-700': '#5A3696',
         'active-heart': '#53C629',
         'results': '#2563EB',
+        'container-filter': '#e0f7d7',
       },
       animation: {
         'spin-fast': 'spin 1s infinite linear',
